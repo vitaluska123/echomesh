@@ -44,5 +44,9 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-/runst/target/debug
-/runst/target/release
+# Android native libs copied for local builds (generated)
+android/app/src/main/jniLibs/
+
+# Rust build outputs (typo fix + broader coverage)
+rust/target/
+**/rust/target/
