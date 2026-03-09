@@ -1,9 +1,25 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'bridge_generated.dart/frb_generated.dart';  // ← обязательно этот импорт!
-import 'bridge_generated.dart/api.dart';            // для greet
+import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated_io.dart';
+
+import 'bridge_generated.dart/api.dart'; // для greet
+import 'bridge_generated.dart/frb_generated.dart'; // ← обязательно этот импорт!
 
 Future<void> main() async {
-  await RustLib.init();  // ← это решает проблему "has not been initialized"
+  // Pick correct Rust library location depending on build mode.
+  // - Debug/Profile: `cargo build` → `rust/target/debug/`
+  // - Release: `cargo build --release` → `rust/target/release/`
+  final ioDirectory = kReleaseMode ? 'rust/target/release/' : 'rust/target/debug/';
+
+  final externalLibrary = await loadExternalLibrary(
+    ExternalLibraryLoaderConfig(
+      stem: 'echomesh',
+      ioDirectory: ioDirectory,
+      webPrefix: 'pkg/',
+    ),
+  );
+
+  await RustLib.init(externalLibrary: externalLibrary);
 
   runApp(const EchoMeshApp());
 }
