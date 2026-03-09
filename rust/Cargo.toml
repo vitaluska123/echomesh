@@ -1,0 +1,29 @@
+[package]
+name = "echomesh"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "staticlib"]
+
+[dependencies]
+libp2p = { version = "0.54", features = [
+  "tcp",
+  "quic",
+  "noise",
+  "yamux",
+  "identify",
+  "kad",
+  "relay",
+  "ping",
+  "gossipsub",
+  "request-response",
+  "tokio"
+] }
+tokio = { version = "1", features = ["full", "rt-multi-thread"] }
+futures = "0.3"
+anyhow = "1.0"
+flutter_rust_bridge = "=2.11.1"  # твоя версия
+
+[lints.rust]
+unexpected_cfgs = { level = "allow", check-cfg = ['cfg(frb_expand)'] }

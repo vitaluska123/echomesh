@@ -88,7 +88,7 @@ git clone https://github.com/ВАШ_НИК/echomesh.git
 cd echomesh
 
 # 2. Генерируем мост Flutter ↔ Rust
-flutter_rust_bridge_codegen generate
+flutter_rust_bridge_codegen generate --watch
 
 # 3. Устанавливаем зависимости
 flutter pub get
@@ -97,6 +97,10 @@ cd rust && cargo build && cd ..
 # 4. Запуск (Android / desktop)
 flutter run
 
+# linux 
+LD_LIBRARY_PATH=$(pwd)/rust/target/debug \
+  flutter run -d linux --verbose
+  
 # Для iOS: откройте ios/Runner.xcworkspace в Xcode
 ```
 

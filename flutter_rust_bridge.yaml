@@ -1,0 +1,5 @@
+rust_root: rust
+rust_input: crate::api
+dart_output: lib/bridge_generated.dart
+c_output: rust/generated.h
+# flutter_rust_bridge_codegen generate --watch
