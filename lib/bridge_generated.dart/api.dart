@@ -8,3 +8,18 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 Future<String> generatePeerId() =>
     RustLib.instance.api.crateApiGeneratePeerId();
+
+Future<String> nodeStart({
+  required String listenAddr,
+  required bool enableQuic,
+}) => RustLib.instance.api.crateApiNodeStart(
+  listenAddr: listenAddr,
+  enableQuic: enableQuic,
+);
+
+Future<void> nodeStop() => RustLib.instance.api.crateApiNodeStop();
+
+Future<String?> nodePeerId() => RustLib.instance.api.crateApiNodePeerId();
+
+Future<(bool, String?, List<String>)> nodeStatus() =>
+    RustLib.instance.api.crateApiNodeStatus();

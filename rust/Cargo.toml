@@ -18,7 +18,9 @@ libp2p = { version = "0.54", features = [
   "ping",
   "gossipsub",
   "request-response",
-  "tokio"
+  "tokio",
+  "dns",
+  "macros"
 ] }
 tokio = { version = "1", features = ["full", "rt-multi-thread"] }
 futures = "0.3"
